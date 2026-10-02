@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'BradfordMono';
+  src: local('BradfordMono'), local('Bradford Mono'), local('BradfordMono-Regular'), local('Bradford Mono Regular');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  background: #fff;
+  color: #000;
+  font-family: 'BradfordMono', 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #fff;
+}
+
+.site-name {
+  position: fixed;
+  z-index: 10;
+  top: 24px;
+  left: 32px;
+  font: inherit;
+  line-height: 1.4;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 32px 64px;
+}
+
+.site-footer blockquote {
+  margin: 0;
+  font: inherit;
+  line-height: 1.6;
+}
+
+.site-face {
+  flex-shrink: 0;
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.photo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3.4fr) minmax(0, 1fr);
+  align-items: center;
+  align-content: center;
+  gap: 40px 24px;
+  min-height: 100svh;
+  margin: 0;
+  padding: 64px 32px 32px;
+}
+
+.photo img {
+  grid-column: 2;
+  grid-row: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 72svh;
+  object-fit: contain;
+}
+
+.photo-name,
+.photo-title,
+.photo-date {
+  text-align: center;
+  font: inherit;
+  line-height: 1.4;
+}
+
+.photo-name {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.photo-title {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.photo-date {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+@media (max-width: 600px) {
+  .site-face {
+    width: 72px;
+    height: 72px;
+  }
+
+  .site-footer {
+    gap: 16px;
+    padding: 32px 24px 48px;
+  }
+
+  .site-name {
+    top: 16px;
+    left: 12px;
+  }
+
+  .photo {
+    grid-template-columns: 72px minmax(0, 1fr) 72px;
+    gap: 40px 8px;
+    padding: 48px 12px 16px;
+  }
+
+  .photo-date {
+    white-space: nowrap;
+  }
+}
