@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <!-- Keep preview-server injected scripts from reloading this static page. -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self'; connect-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://static.cloudflareinsights.com; connect-src https://cloudflareinsights.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#ffffff">
     <meta name="description" content="Alex Augusta — Photography portfolio.">
@@ -158,5 +158,8 @@
       <blockquote>„To see the world, things dangerous to come to, to see behind walls, draw closer, to find each other, and to feel. That is the purpose of life.“ - Walter Mitty</blockquote>
       <img class="site-face" src="face.PNG" alt="" width="200" height="200" loading="lazy">
     </footer>
+    <!-- Cloudflare Web Analytics -->
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2d02657c831f4660be215482fc6f6870"}'></script>
+    <!-- End Cloudflare Web Analytics -->
   </body>
 </html>
