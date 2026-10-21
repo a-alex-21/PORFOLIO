@@ -9,13 +9,26 @@
     <meta name="description" content="Alex's Photos">
     <title>Alex's Photos</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css?v=mobile-2">
+    <link rel="stylesheet" href="styles.css?v=cameras-1">
     <script src="gallery.js" defer></script>
   </head>
-  <body>
-    <header class="site-name">Alex Augusta</header>
+  <body id="top">
+    <header class="site-name"><a href="#top">Alex Augusta</a></header>
+    <nav class="album-nav" aria-label="Albums">
+      <a href="#HK">HK</a>
+      <a href="#M">M</a>
+      <a href="#A">A</a>
+      <a href="#NP">NP</a>
+      <a href="#PR">PR</a>
+      <a href="#KO">KO</a>
+      <a href="#Z">Z</a>
+    </nav>
+    <nav class="camera-nav" aria-label="Camera albums">
+      <a href="albums/FG.html">FG</a>
+      <a href="albums/KONICA.html">KONICA</a>
+    </nav>
     <main class="photos">
-      <figure class="photo">
+      <figure class="photo" id="HK">
         <figcaption class="photo-name">HK01</figcaption>
         <img src="photos/HK01.jpg" alt="cool city" width="3091" height="2048" fetchpriority="high" decoding="async">
         <span class="photo-title">cool city</span>
@@ -39,7 +52,7 @@
         <span class="photo-title">gone fishing</span>
         <time class="photo-date" datetime="2025-07-27">27.07.2025</time>
       </figure>
-      <figure class="photo">
+      <figure class="photo" id="M">
         <figcaption class="photo-name">M01</figcaption>
         <img src="photos/M01.jpg" alt="take a pic" width="3091" height="2048" loading="lazy" decoding="async">
         <span class="photo-title">take a pic</span>
@@ -87,13 +100,13 @@
         <span class="photo-title">let&#x27;s dance</span>
         <time class="photo-date" datetime="2026-03-08">08.03.2026</time>
       </figure>
-      <figure class="photo">
+      <figure class="photo" id="A">
         <figcaption class="photo-name">A01</figcaption>
         <img src="photos/A01.jpg" alt="worryless" width="2138" height="1437" loading="lazy" decoding="async">
         <span class="photo-title">worryless</span>
         <time class="photo-date" datetime="2026-08-17">17.08.2026</time>
       </figure>
-      <figure class="photo">
+      <figure class="photo" id="NP">
         <figcaption class="photo-name">NP01</figcaption>
         <img src="photos/NP01.jpg" alt="EPSILON 1" width="3091" height="2048" loading="lazy" decoding="async">
         <span class="photo-title">EPSILON 1</span>
@@ -117,7 +130,7 @@
         <span class="photo-title">beach day</span>
         <time class="photo-date" datetime="2026-08-31">31.08.2026</time>
       </figure>
-      <figure class="photo">
+      <figure class="photo" id="PR">
         <figcaption class="photo-name">PR01</figcaption>
         <img src="photos/PR01.jpg" alt="rocky" width="2943" height="1950" loading="lazy" decoding="async">
         <span class="photo-title">rocky</span>
@@ -147,7 +160,43 @@
         <span class="photo-title">decaf</span>
         <time class="photo-date" datetime="2025-02-20">20.02.2025</time>
       </figure>
+      <figure class="photo" id="KO">
+        <figcaption class="photo-name">KO01</figcaption>
+        <img src="photos/KO01.jpg" alt="coke" width="3324" height="1870" loading="lazy" decoding="async">
+        <span class="photo-title">coke</span>
+        <time class="photo-date" datetime="2026-10-12">12.10.2026</time>
+      </figure>
       <figure class="photo">
+        <figcaption class="photo-name">KO02</figcaption>
+        <img src="photos/KO02.jpg" alt="coke?" width="2882" height="1621" loading="lazy" decoding="async">
+        <span class="photo-title">coke?</span>
+        <time class="photo-date" datetime="2026-10-12">12.10.2026</time>
+      </figure>
+      <figure class="photo">
+        <figcaption class="photo-name">KO03</figcaption>
+        <img src="photos/KO03.jpg" alt="yum" width="2267" height="1275" loading="lazy" decoding="async">
+        <span class="photo-title">yum</span>
+        <time class="photo-date" datetime="2026-10-13">13.10.2026</time>
+      </figure>
+      <figure class="photo">
+        <figcaption class="photo-name">KO04</figcaption>
+        <img src="photos/KO04.jpg" alt="guard" width="2898" height="1631" loading="lazy" decoding="async">
+        <span class="photo-title">guard</span>
+        <time class="photo-date" datetime="2026-10-13">13.10.2026</time>
+      </figure>
+      <figure class="photo">
+        <figcaption class="photo-name">KO05</figcaption>
+        <img src="photos/KO05.jpg" alt="untz" width="3377" height="1900" loading="lazy" decoding="async">
+        <span class="photo-title">untz</span>
+        <time class="photo-date" datetime="2026-10-15">15.10.2026</time>
+      </figure>
+      <figure class="photo">
+        <figcaption class="photo-name">KO06</figcaption>
+        <img src="photos/KO06.jpg" alt="no way!" width="3106" height="1747" loading="lazy" decoding="async">
+        <span class="photo-title">no way!</span>
+        <time class="photo-date" datetime="2026-10-15">15.10.2026</time>
+      </figure>
+      <figure class="photo" id="Z">
         <figcaption class="photo-name">Z01</figcaption>
         <img src="photos/Z01.jpg" alt="la rose" width="3091" height="2048" loading="lazy" decoding="async">
         <span class="photo-title">la rose</span>
