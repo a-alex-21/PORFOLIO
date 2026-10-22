@@ -273,3 +273,86 @@ a:focus-visible, button:focus-visible { outline: 1px solid currentColor; outline
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
 }
+
+/* Local collage viewer: the full image keeps its original proportions. */
+html { scrollbar-gutter: stable; }
+.album-photo { cursor: zoom-in; }
+.album-board, .album-header { transition: opacity 650ms cubic-bezier(.4, 0, .2, 1), filter 650ms cubic-bezier(.4, 0, .2, 1); }
+body.photo-open { overflow: hidden; }
+.photo-open .album-board,
+.photo-open .album-header { opacity: .4; filter: saturate(.35); }
+.photo-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 72px 24px 32px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  overflow: hidden;
+  outline: none;
+  cursor: zoom-out;
+}
+.photo-overlay[open] { display: flex; align-items: center; justify-content: center; }
+.photo-overlay::backdrop {
+  background: rgba(255, 255, 255, .25);
+  animation: camera-fade-in 650ms ease-in-out both;
+}
+.photo-overlay.is-closing::backdrop { animation: camera-fade-out 550ms ease-in-out both; }
+.photo-overlay > img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 80svh;
+  object-fit: contain;
+  cursor: zoom-out;
+  animation: photo-reveal 750ms cubic-bezier(.4, 0, .2, 1) both;
+}
+.overlay-details {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font: inherit;
+  line-height: 1.4;
+  pointer-events: none;
+}
+.photo-overlay.is-closing { animation: camera-fade-out 550ms ease-in-out both; }
+@keyframes photo-reveal {
+  from { opacity: 0; transform: scale(.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+@media (max-width: 600px) {
+  .photo-overlay { padding: 80px 12px 24px; }
+  .overlay-details { top: 16px; gap: 8px 16px; }
+  .photo-overlay > img { max-width: 94vw; max-height: 76svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .album-board, .album-header { transition: none; }
+  .photo-overlay > img, .photo-overlay.is-closing,
+  .photo-overlay::backdrop, .photo-overlay.is-closing::backdrop { animation: none; }
+}
+
+/* CUR files include their own hotspots. Paths are relative to this stylesheet. */
+@media (any-pointer: fine) {
+  html, body { cursor: url("cursor/Wii Cursor-small.cur"), auto; }
+  a[href], button:not(:disabled), [role="button"],
+  .album-photo, .photo-overlay, .photo-overlay > img,
+  .photo-overlay::backdrop {
+    cursor: url("cursor/wii-pointer-blue-ccw-small.cur"), pointer;
+  }
+  html.cursor-pressed,
+  html.cursor-pressed *,
+  html.cursor-pressed .photo-overlay::backdrop {
+    cursor: url("cursor/wii-grab-ccw-small.cur"), grabbing !important;
+  }
+}

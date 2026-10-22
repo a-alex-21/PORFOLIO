@@ -3,10 +3,58 @@
   const photos = [...board.querySelectorAll('.album-photo')];
   const details = document.querySelector('.album-details');
   const compact = window.matchMedia('(max-width: 600px)');
-  const touchOnly = window.matchMedia('(hover: none) and (pointer: coarse)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let hovered = null;
   let focused = null;
   let tapped = null;
+  let enlargedPhoto = null;
+  let closing = false;
+  const overlay = document.createElement('dialog');
+  overlay.className = 'photo-overlay';
+  overlay.tabIndex = -1;
+  const enlargedImage = document.createElement('img');
+  const overlayDetails = document.createElement('div');
+  overlayDetails.className = 'overlay-details';
+  overlay.append(overlayDetails, enlargedImage);
+  document.body.append(overlay);
+
+  function openPhoto(photo) {
+    if (overlay.open) return;
+    enlargedPhoto = photo;
+    const original = photo.querySelector('img');
+    enlargedImage.src = original.currentSrc || original.src;
+    enlargedImage.alt = original.alt;
+    overlayDetails.replaceChildren();
+    for (const key of ['name', 'description', 'date']) {
+      const span = document.createElement('span');
+      span.textContent = photo.dataset[key];
+      overlayDetails.append(span);
+    }
+    overlay.setAttribute('aria-label', `${photo.dataset.name}: ${photo.dataset.description}. Press Escape or click anywhere to close.`);
+    document.body.classList.add('photo-open');
+    overlay.showModal();
+    overlay.focus();
+  }
+
+  function closePhoto() {
+    if (!overlay.open || closing) return;
+    closing = true;
+    overlay.classList.add('is-closing');
+    document.body.classList.remove('photo-open');
+    setTimeout(() => {
+      overlay.close();
+      overlay.classList.remove('is-closing');
+      enlargedPhoto?.focus({ preventScroll: true });
+      enlargedPhoto = null;
+      closing = false;
+    }, reducedMotion.matches ? 0 : 550);
+  }
+
+  overlay.addEventListener('click', closePhoto);
+  overlay.addEventListener('cancel', event => {
+    event.preventDefault();
+    closePhoto();
+  });
 
   function layout() {
     const rowCount = Math.ceil(photos.length / (compact.matches ? 2 : 3));
@@ -48,11 +96,12 @@
       if (hovered === photo) hovered = null;
       showDetails();
     });
-    // Touch browsers do not consistently focus buttons after a tap.
-    photo.addEventListener('click', event => {
-      if (event.pointerType !== 'touch' && !touchOnly.matches) return;
+    photo.setAttribute('aria-haspopup', 'dialog');
+    photo.setAttribute('aria-label', `Enlarge ${photo.dataset.name}: ${photo.dataset.description}`);
+    photo.addEventListener('click', () => {
       tapped = photo;
       showDetails();
+      openPhoto(photo);
     });
     // Keep keyboard access without making desktop mouse clicks pin details.
     photo.addEventListener('focus', () => {
