@@ -1,4 +1,8 @@
 (() => {
+  const legacyAlbum = window.location.pathname.match(/^\/(?:albums\/(FG|KONICA)\.html|(FG|KONICA)\/index\.html)$/);
+  if (legacyAlbum) {
+    history.replaceState(history.state, '', `/${legacyAlbum[1] || legacyAlbum[2]}/` + window.location.search + window.location.hash);
+  }
   const board = document.querySelector('.album-board');
   const photos = [...board.querySelectorAll('.album-photo')];
   const details = document.querySelector('.album-details');

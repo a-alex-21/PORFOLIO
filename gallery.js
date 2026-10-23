@@ -1,4 +1,8 @@
 (() => {
+  // Render the homepage directly at legacy entry URLs; normalize without a reload.
+  if (['/', '/index.html', '/home/index.html'].includes(window.location.pathname)) {
+    history.replaceState(history.state, '', '/home/' + window.location.search + window.location.hash);
+  }
   const photos = [...document.querySelectorAll('.photo')];
   if (!photos.length) return;
 
