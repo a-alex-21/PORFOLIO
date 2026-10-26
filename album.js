@@ -13,6 +13,7 @@
   let tapped = null;
   let enlargedPhoto = null;
   let closing = false;
+  let imageRequest = 0;
   const overlay = document.createElement('dialog');
   overlay.className = 'photo-overlay';
   overlay.tabIndex = -1;
@@ -28,6 +29,20 @@
     const original = photo.querySelector('img');
     enlargedImage.src = original.currentSrc || original.src;
     enlargedImage.alt = original.alt;
+    // Reserve the final display size even while showing the smaller preview.
+    enlargedImage.width = Number(original.getAttribute('width'));
+    enlargedImage.height = Number(original.getAttribute('height'));
+    enlargedImage.style.width = `${enlargedImage.width}px`;
+    const request = ++imageRequest;
+    const fullImage = new Image();
+    fullImage.src = original.dataset.original || original.src;
+    fullImage.decode().then(() => {
+      if (request === imageRequest && overlay.open && !closing) {
+        enlargedImage.src = fullImage.src;
+      }
+    }).catch(() => {
+      // Keep the available preview if the original cannot be downloaded.
+    });
     overlayDetails.replaceChildren();
     for (const key of ['name', 'description', 'date']) {
       const span = document.createElement('span');
@@ -43,6 +58,7 @@
   function closePhoto() {
     if (!overlay.open || closing) return;
     closing = true;
+    imageRequest++;
     overlay.classList.add('is-closing');
     document.body.classList.remove('photo-open');
     setTimeout(() => {
