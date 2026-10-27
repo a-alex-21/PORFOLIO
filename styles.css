@@ -29,7 +29,13 @@ body {
   left: 32px;
   font: inherit;
   line-height: 1.4;
+  margin: 0;
 }
+
+.site-name h1 { margin: 0; font: inherit; }
+.site-tagline { display: block; margin-top: 3px; font-size: 10px; }
+.album-about { max-width: 1600px; margin: 0 auto; padding: 0 32px 32px; line-height: 1.6; }
+.site-footer p { margin: 0 0 20px; line-height: 1.6; }
 
 .site-footer {
   display: flex;
