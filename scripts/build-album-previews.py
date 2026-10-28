@@ -1,5 +1,6 @@
 """Rebuild responsive album previews. Requires Pillow; originals stay untouched."""
 from pathlib import Path
+import argparse
 import math
 import re
 from PIL import Image, ImageOps
@@ -21,7 +22,11 @@ def row_fractions(dimensions, columns):
     return result
 
 
-for album in ('FG', 'KONICA'):
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--album', choices=('FG', 'KONICA'), help='Rebuild only this album.')
+args = parser.parse_args()
+
+for album in ([args.album] if args.album else ('FG', 'KONICA')):
     page = ROOT / album / 'index.html'
     html = page.read_text()
     tags = re.findall(r'<img\b[^>]+>', html)

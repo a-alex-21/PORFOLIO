@@ -89,6 +89,27 @@
     <image:image>
       <image:loc>https://made-by-alex.dev/photos/Z01.jpg</image:loc>
     </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO07.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO08.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO09.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO10.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO11.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO12.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO13.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://made-by-alex.dev/FG/</loc>
@@ -181,6 +202,27 @@
     </image:image>
     <image:image>
       <image:loc>https://made-by-alex.dev/photos/KO06.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO07.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO08.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO09.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO10.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO11.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO12.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://made-by-alex.dev/photos/KO13.jpg</image:loc>
     </image:image>
   </url>
 </urlset>
