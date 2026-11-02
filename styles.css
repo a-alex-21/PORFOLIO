@@ -266,6 +266,10 @@ a:focus-visible, button:focus-visible { outline: 1px solid currentColor; outline
   .album-header { min-height: 86px; }
 }
 @media (max-width: 600px) {
+  .album-nav {
+    top: auto;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
   .camera-nav { top: 16px; }
   .photos .photo { padding-top: 96px; }
 }
