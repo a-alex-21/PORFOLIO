@@ -81,7 +81,6 @@ body {
 }
 
 .photo-name,
-.photo-title,
 .photo-date {
   text-align: center;
   font: inherit;
@@ -93,14 +92,9 @@ body {
   grid-row: 1;
 }
 
-.photo-title {
+.photo-date {
   grid-column: 3;
   grid-row: 1;
-}
-
-.photo-date {
-  grid-column: 2;
-  grid-row: 2;
 }
 
 @media (max-width: 600px) {
@@ -127,17 +121,9 @@ body {
   }
 
   .photo-name {
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 1;
-    padding-left: 12px;
-    text-align: left;
-  }
-
-  .photo-title {
-    grid-column: 2;
-    grid-row: 1;
-    padding-right: 12px;
-    text-align: right;
+    text-align: center;
   }
 
   .photo img {

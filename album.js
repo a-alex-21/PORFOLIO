@@ -44,12 +44,12 @@
       // Keep the available preview if the original cannot be downloaded.
     });
     overlayDetails.replaceChildren();
-    for (const key of ['name', 'description', 'date']) {
+    for (const key of ['name', 'date']) {
       const span = document.createElement('span');
       span.textContent = photo.dataset[key];
       overlayDetails.append(span);
     }
-    overlay.setAttribute('aria-label', `${photo.dataset.name}: ${photo.dataset.description}. Press Escape or click anywhere to close.`);
+    overlay.setAttribute('aria-label', `${photo.dataset.name}, ${photo.dataset.date}. Press Escape or click anywhere to close.`);
     document.body.classList.add('photo-open');
     overlay.showModal();
     overlay.focus();
@@ -99,7 +99,7 @@
     const photo = hovered || tapped || focused;
     details.replaceChildren();
     if (!photo) return;
-    for (const key of ['name', 'description', 'date']) {
+    for (const key of ['name', 'date']) {
       const span = document.createElement('span');
       span.textContent = photo.dataset[key];
       details.append(span);
@@ -117,7 +117,7 @@
       showDetails();
     });
     photo.setAttribute('aria-haspopup', 'dialog');
-    photo.setAttribute('aria-label', `Enlarge ${photo.dataset.name}: ${photo.dataset.description}`);
+    photo.setAttribute('aria-label', `Enlarge ${photo.dataset.name}, ${photo.dataset.date}`);
     photo.addEventListener('click', () => {
       tapped = photo;
       showDetails();
