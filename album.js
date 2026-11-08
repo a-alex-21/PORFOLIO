@@ -20,11 +20,26 @@
   const enlargedImage = document.createElement('img');
   const overlayDetails = document.createElement('div');
   overlayDetails.className = 'overlay-details';
+  overlayDetails.setAttribute('aria-live', 'polite');
+  overlayDetails.setAttribute('aria-atomic', 'true');
   overlay.append(overlayDetails, enlargedImage);
   document.body.append(overlay);
 
   function openPhoto(photo) {
     if (overlay.open) return;
+    showPhoto(photo);
+    document.body.classList.add('photo-open');
+    overlay.showModal();
+    overlay.focus();
+  }
+
+  function cyclePhoto(direction) {
+    if (!overlay.open || closing || !enlargedPhoto) return;
+    const index = photos.indexOf(enlargedPhoto);
+    showPhoto(photos[(index + direction + photos.length) % photos.length]);
+  }
+
+  function showPhoto(photo) {
     enlargedPhoto = photo;
     const original = photo.querySelector('img');
     enlargedImage.src = original.currentSrc || original.src;
@@ -49,10 +64,7 @@
       span.textContent = photo.dataset[key];
       overlayDetails.append(span);
     }
-    overlay.setAttribute('aria-label', `${photo.dataset.name}, ${photo.dataset.date}. Press Escape or click anywhere to close.`);
-    document.body.classList.add('photo-open');
-    overlay.showModal();
-    overlay.focus();
+    overlay.setAttribute('aria-label', `${photo.dataset.name}, ${photo.dataset.date}. Click beside the photo or use the left and right arrow keys to browse. Press Escape or click the photo to close.`);
   }
 
   function closePhoto() {
@@ -70,7 +82,26 @@
     }, reducedMotion.matches ? 0 : 550);
   }
 
-  overlay.addEventListener('click', closePhoto);
+  overlay.addEventListener('click', event => {
+    const bounds = enlargedImage.getBoundingClientRect();
+    // object-fit can leave empty space inside the image element itself.
+    // Use the visible photo edges so that all of that space navigates too.
+    const ratio = enlargedImage.naturalWidth && enlargedImage.naturalHeight
+      ? enlargedImage.naturalWidth / enlargedImage.naturalHeight
+      : enlargedImage.width / enlargedImage.height;
+    const visibleWidth = Math.min(bounds.width, bounds.height * ratio);
+    const left = bounds.left + (bounds.width - visibleWidth) / 2;
+    const right = left + visibleWidth;
+    if (event.clientX < left) cyclePhoto(-1);
+    else if (event.clientX > right) cyclePhoto(1);
+    else closePhoto();
+  });
+  overlay.addEventListener('keydown', event => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    cyclePhoto(event.key === 'ArrowLeft' ? -1 : 1);
+  });
   overlay.addEventListener('cancel', event => {
     event.preventDefault();
     closePhoto();
